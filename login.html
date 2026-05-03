@@ -181,11 +181,18 @@
             });
         }
         
-        function isSchoolHourWIB() {
-            const now = new Date();
-            let hour = now.getHours();
-            return (hour >= 7 && hour < 24);
-        }
+       function isSchoolHourWIB() {
+    const now = new Date();
+    let hour = now.getHours();
+    let minute = now.getMinutes();
+    
+    // Jam 07:25 sampai 11:45
+    if ((hour > 7 || (hour === 7 && minute >= 25)) && 
+        (hour < 11 || (hour === 11 && minute <= 45))) {
+        return true;
+    }
+    return false;
+}
         
         document.getElementById('loginForm').addEventListener('submit', async (e) => {
             e.preventDefault();
